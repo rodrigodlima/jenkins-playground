@@ -1,0 +1,10 @@
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "pipeline-library"
+        defaultVersion: "main"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/rodrigodlima/jenkins-pipeline-library.git"

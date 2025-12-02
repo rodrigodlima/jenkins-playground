@@ -1,0 +1,7 @@
+configuration-as-code:latest
+docker-plugin:latest
+workflow-aggregator:latest
+git:latest
+github:latest
+pipeline-stage-view:latest
+maven-plugin:latest
