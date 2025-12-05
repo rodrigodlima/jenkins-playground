@@ -6,13 +6,14 @@ pipeline {
     environment {
         APP_NAME = getOrDefault(pipelineParams.appName, null)
         IMAGE_TAG = getOrDefault(pipelineParams.imageTag, "latest")
+    }
     stages {
-        stage('Build')
+        stage('Build') {
             steps {
                 dockerBuild(
                     env.APP_NAME,
-                    env.IMAGE_TAG
-                )
+                    env.IMAGE_TAG)
             }
+        }
     }
 }
