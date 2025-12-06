@@ -3,9 +3,13 @@
 
 pipeline {
     agent any
+    parameters {
+        string(name: 'APP_NAME', defaultValue: 'my-app', description: 'Application name')
+        string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'Docker image tag')
+    }
     environment {
-        APP_NAME = getOrDefault(pipelineParams.appName, null)
-        IMAGE_TAG = getOrDefault(pipelineParams.imageTag, "latest")
+        APP_NAME = "${params.APP_NAME}"
+        IMAGE_TAG = "${params.IMAGE_TAG}"
     }
     stages {
         stage('Build') {
