@@ -31,7 +31,7 @@ services:
       git config --system user.email 'jenkins@localhost' &&
       git config --system init.defaultBranch main &&
       git config --system safe.directory '*' &&
-      apt-get update && apt-get install -y maven python3 python3-pip python3-venv nodejs npm &&
+      apt-get update && apt-get install -y maven python3 python3-pip python3-venv nodejs npm buildah &&
       echo 'Node.js version:' && node --version &&
       echo 'NPM version:' && npm --version &&
       ln -sf /usr/bin/python3 /usr/bin/python &&
