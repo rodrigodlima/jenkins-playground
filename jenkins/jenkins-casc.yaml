@@ -3,6 +3,8 @@ unclassified:
     libraries:
       - name: "pipeline-library"
         defaultVersion: "main"
+        implicit: false
+        allowVersionOverride: true
         retriever:
           modernSCM:
             scm:

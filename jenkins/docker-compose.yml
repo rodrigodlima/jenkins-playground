@@ -15,9 +15,11 @@ services:
       - .:/workspace
       - ./setup-jenkins-simple.groovy:/var/jenkins_home/init.groovy.d/setup-jenkins.groovy
       - ./scriptApproval.xml:/var/jenkins_home/scriptApproval.xml
+      - ./jenkins-casc.yaml:/var/jenkins_home/casc.yaml
     environment:
       - JENKINS_OPTS=--httpPort=8080
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/casc.yaml
       - JENKINS_INSTALL_PLUGINS=git,github,workflow-aggregator,pipeline-stage-view,maven-plugin
       - MAVEN_OPTS=-Dmaven.repo.local=/var/jenkins_home/.m2/repository
       - JENKINS_ADMIN_USER=${JENKINS_ADMIN_USER:-admin}
