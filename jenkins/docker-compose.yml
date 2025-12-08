@@ -51,6 +51,9 @@ services:
       mkdir -p /etc/containers &&
       echo '[storage]' > /etc/containers/storage.conf &&
       echo 'driver = \"vfs\"' >> /etc/containers/storage.conf &&
+      echo 'runroot = \"/var/run/containers/storage\"' >> /etc/containers/storage.conf &&
+      echo 'graphroot = \"/var/lib/containers/storage\"' >> /etc/containers/storage.conf &&
+      mkdir -p /var/run/containers/storage /var/lib/containers/storage &&
       chown -R jenkins:jenkins /var/jenkins_home &&
       /usr/local/bin/jenkins.sh"
 volumes:
