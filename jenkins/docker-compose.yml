@@ -53,6 +53,10 @@ services:
       echo 'driver = \"vfs\"' >> /etc/containers/storage.conf &&
       echo 'runroot = \"/var/run/containers/storage\"' >> /etc/containers/storage.conf &&
       echo 'graphroot = \"/var/lib/containers/storage\"' >> /etc/containers/storage.conf &&
+      echo 'unqualified-search-registries = [\"docker.io\"]' > /etc/containers/registries.conf &&
+      echo '' >> /etc/containers/registries.conf &&
+      echo '[[registry]]' >> /etc/containers/registries.conf &&
+      echo 'location = \"docker.io\"' >> /etc/containers/registries.conf &&
       mkdir -p /var/run/containers/storage /var/lib/containers/storage &&
       chown -R jenkins:jenkins /var/jenkins_home &&
       /usr/local/bin/jenkins.sh"
