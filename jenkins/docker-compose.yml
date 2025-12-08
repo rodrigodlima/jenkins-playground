@@ -6,6 +6,12 @@ services:
       dockerfile: Dockerfile
     container_name: jenkins
     restart: unless-stopped
+    privileged: true
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    cap_add:
+      - SYS_ADMIN
     ports:
       - "8080:8080"
       - "50000:50000"
@@ -33,7 +39,7 @@ services:
       git config --system user.email 'jenkins@localhost' &&
       git config --system init.defaultBranch main &&
       git config --system safe.directory '*' &&
-      apt-get update && apt-get install -y maven python3 python3-pip python3-venv nodejs npm buildah &&
+      apt-get update && apt-get install -y maven python3 python3-pip python3-venv nodejs npm buildah fuse-overlayfs &&
       echo 'Node.js version:' && node --version &&
       echo 'NPM version:' && npm --version &&
       ln -sf /usr/bin/python3 /usr/bin/python &&
@@ -42,6 +48,9 @@ services:
       echo 'jenkins.install.runSetupWizard=false' > /var/jenkins_home/jenkins.install.UpgradeWizard.state &&
       echo 'jenkins.install.runSetupWizard=false' > /var/jenkins_home/jenkins.install.InstallUtil.lastExecVersion &&
       touch /var/jenkins_home/.jenkins-cli &&
+      mkdir -p /etc/containers &&
+      echo '[storage]' > /etc/containers/storage.conf &&
+      echo 'driver = \"vfs\"' >> /etc/containers/storage.conf &&
       chown -R jenkins:jenkins /var/jenkins_home &&
       /usr/local/bin/jenkins.sh"
 volumes:
